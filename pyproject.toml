@@ -17,13 +17,3 @@ dependencies = [
     "tictactoe-gym>=1.0.1",
     "torch>=2.7.1",
 ]
-
-
-[dependency-groups]
-dev = ["ml-agents-envs", "ml-agents"]
-
-[tool.uv]
-
-[tool.uv.sources]
-ml-agents-envs = { path = "./ml-agents/ml-agents-envs" }
-ml-agents = { path = "./ml-agents/ml-agents" }
