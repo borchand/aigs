@@ -1,0 +1,19 @@
+[project]
+name = "aigs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "equinox>=0.12.2",
+    "gymnasium>=1.1.1",
+    "jax>=0.5.3",
+    "jaxlib>=0.5.3",
+    "mctx>=0.0.5",
+    "mlagents>=0.18.0",
+    "pettingzoo>=1.25.0",
+    "pgx>=2.6.0",
+    "pygame>=2.6.1",
+    "tictactoe-gym>=1.0.1",
+    "torch>=2.7.1",
+]
