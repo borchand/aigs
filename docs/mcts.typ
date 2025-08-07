@@ -12,16 +12,17 @@
 This is the first of three labs. Its purpose is to _1)_ allow you to get
 hands-on experience with game trees, and _2)_ to ensure that your computer setup
 is up and running. Having installed `uv`#footnote[#link(
-    "https://docs.astral.sh/uv/",
-    "docs.astral.sh/uv",
-  )], and cloned our repo #footnote[#link(
-    "https://github.com/syrkis/aigs",
-    "github.com/syrkis/aigs",
-  )], run `uv sync` to install all dependencies. I recommend using Zed
+  "https://docs.astral.sh/uv/",
+  "docs.astral.sh/uv",
+)], and cloned our repo #footnote[#link(
+  "https://github.com/syrkis/aigs",
+  "github.com/syrkis/aigs",
+)], run `uv sync` to install all dependencies. I recommend using Zed
 #footnote[#link(
-    "https://zed.dev",
-    "zed.dev",
-  )] or VS Code as your editor, but anything (including Notepad++) will do.
+  "https://zed.dev",
+  "zed.dev",
+)] or VS Code as your editor, but anything (including Notepad++) will do. We
+will explore this lab in the coming sessions.
 
 = Connect four
 
@@ -71,6 +72,7 @@ or whatever.) You have to:
   is 0
 
 
+
 = Monte Carlo tree search
 
 Even with $alpha-beta$ pruning, we are still exhaustively searching through the
@@ -83,6 +85,7 @@ variations and smart tricks to MCTS @browne2012. You have to
 - Implement a selection function
 - Implement an expansion function
 - Combine the above into MCTS
+
 
 
 #[

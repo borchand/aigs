@@ -3,18 +3,21 @@
 # by: Noah Syrkis
 
 # Imports
+from transformers import FlaxViTModel
+
+
 import jax.numpy as np
 from jax import random
-import pgx
-from pgx import State, Env
+from pgx import State
 from jaxtyping import Array
 
+# model = FlaxViTModel.from_pretrained("google/vit-base-patch16-224-in21k")
 
 # %% Setup
-rng = random.PRNGKey(0)  # jax number generatorr
-env: Env = pgx.make("tic_tac_toe")  # game environments
-state: State = env.init(rng)  # intialized game statess
-param = random.normal(rng, (3, 3))  # param init
+# rng = random.PRNGKey(0)  # jax number generatorr
+# env: Env = pgx.make("tic_tac_toe")  # game environments
+# state: State = env.init(rng)  # intialized game statess
+# param = random.normal(rng, (3, 3))  # param init
 
 
 # %%
@@ -27,6 +30,10 @@ def action_fn(state: State, rng: Array) -> Array:
 def model(obs, param):
     # aigs.conv(obs, param)
     print(param)
+
+
+def main(cfg):
+    print(8)
 
 
 # # %%
