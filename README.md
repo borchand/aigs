@@ -4,8 +4,9 @@ To get up and running:
 
 1. Install `uv` so you can get our environment up and running (https://docs.astral.sh/uv/)
 2. Clone this repo `git clone https://github.com/syrkis/aigs.git`
+3. Sun `uv syn` in the repo.
 
-Open the repo in your IDE. You can run the code with our dependencies using `uv run python`
+Open the repo in your IDE. You can run the code with our dependencies using `uv run python main.py`
 
 ## labs
 
