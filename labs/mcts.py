@@ -10,45 +10,26 @@ env: Env
 
 # %%
 def minimax(state: State, maxim: bool) -> int:
-    def aux(state: State, maxim: bool):
-        if state.ended:
-            return state.point
-        else:
-            temp: int = -1 if maxim else 1
-            for action in np.where(state.legal):
-                value: int = aux(env.step(state, action), not maxim)
-                temp: int = (max if maxim else min)(temp, value)
-            return temp
+    if state.ended:
+        return state.point
+    else:
+        temp: int = -1 if maxim else 1
+        for action in np.where(state.legal):
+            value: int = minimax(env.step(state, action), not maxim)
+            temp: int = (max if maxim else min)(temp, value)
+        return temp
 
-    actions = np.where(state.legal)[0]
-    values = np.array([aux(env.step(state, a), maxim) for a in actions])
-    return values.argmax()
+    # actions = np.where(state.legal)[0]  # <- state.legal is a bool. `where` gives idx
+    # values = np.array([aux(env.step(state, a), maxim) for a in actions])  # <- for loop
+    # return values.argmax()
 
 
-def alpha_beta(state: State, maxim: bool) -> int:
-    def aux(state: State, maxim: bool, alpha: int, beta: int):
-        if state.ended:
-            return state.point
-        else:
-            temp: int = -1 if maxim else 1
-            for action in np.where(state.legal):
-                value: int = aux(env.step(state, action), not maxim, alpha, beta)
-                temp: int = (max if maxim else min)(temp, value)
-                if maxim:
-                    alpha: int = max(alpha, temp)
-                else:
-                    beta: int = min(beta, temp)
-                if alpha >= beta:
-                    break
-            return temp
+def alpha_beta(state: State, maxim: bool, alpha: int, beta: int) -> int:
+    raise NotImplementedError
 
-    actions = np.where(state.legal)[0]
-    values = np.array([aux(env.step(state, a), maxim, -1, 1) for a in actions])
-    return values.argmax()
 
-    # return np.array(
-    # [aux(env.step(state, a), maxim) for a in np.where(state.legal)[0]]
-    # ).argmax()
+def monte_carlo(state: State, maxim: bool, compute: int) -> int:
+    raise NotImplementedError  # you do this
 
 
 # %% Tasks

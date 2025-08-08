@@ -28,3 +28,7 @@ class Env(ABC):
     @abstractmethod
     def step(self, state, action) -> State:
         pass
+
+    @abstractmethod
+    def __str__(self):
+        pass

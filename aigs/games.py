@@ -16,6 +16,11 @@ class ConnectFour(Env):
         raise NotImplementedError()  # You should implement this method
 
 
+class Mario(Env):
+    def init(self) -> State:
+        raise NotImplementedError()  # You should implement this method
+
+
 # TicTacToe
 class TicTacToe(Env):
     def init(self) -> State:
