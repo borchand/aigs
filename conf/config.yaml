@@ -1,2 +1,2 @@
 game: "tic_tac_toe"
-task: "mcts.task_1"
+task: "mcts.main"

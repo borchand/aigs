@@ -17,6 +17,11 @@ class State:
     def minim(self):  # or are we player 2 (minim)?
         return not self.maxim
 
+    def __str__(self) -> str:
+        return " " + str(self.board)[1:-1].replace("1", "x").replace("0", ".").replace(
+            "[", ""
+        ).replace("]", "").replace("2", "o")
+
 
 class Env(ABC):
     """basic environment parent class"""
@@ -30,5 +35,5 @@ class Env(ABC):
         pass
 
     @abstractmethod
-    def __str__(self):
+    def play(self, state):
         pass

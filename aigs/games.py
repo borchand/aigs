@@ -15,9 +15,7 @@ class ConnectFour(Env):
     def step(self, state, action) -> State:
         raise NotImplementedError()  # You should implement this method
 
-
-class Mario(Env):
-    def init(self) -> State:
+    def play(self, state) -> State:
         raise NotImplementedError()  # You should implement this method
 
 
@@ -32,13 +30,15 @@ class TicTacToe(Env):
     def step(self, state, action) -> State:
         # make your move
         board = state.board.copy()
-        board[action // 3, action % 3] = True
+        assert board[action // 3, action % 3] == 0
+        board[action // 3, action % 3] = 1 if state.maxim else 2
 
         # did it win?
+        mask = board.copy() == (1 if state.maxim else 2)
         winner: bool = (
-            board.all(axis=1).any()  # |
-            or board.all(axis=0).any()  # —
-            or board.trace() == 3  # \
+            mask.all(axis=1).any()  # |
+            or mask.all(axis=0).any()  # —
+            or mask.trace() == 3  # \
             or np.fliplr(board).trace() == 3  # /
         )
 
@@ -53,3 +53,16 @@ class TicTacToe(Env):
             point=(1 if state.maxim else -1) if winner else 0,
             maxim=not state.maxim,
         )
+
+    def play(self, state: State) -> State:
+        while not state.ended:
+            print(state)
+            action: int = int(input(f"{'x' if state.maxim else 'o'} move: "))
+            state: State = self.step(state, action)
+        print(
+            state,
+            (("x" if state.point == 1 else "o") + " won")
+            if state.point != 0
+            else "draw",
+        )
+        return state

@@ -19,10 +19,6 @@ def minimax(state: State, maxim: bool) -> int:
             temp: int = (max if maxim else min)(temp, value)
         return temp
 
-    # actions = np.where(state.legal)[0]  # <- state.legal is a bool. `where` gives idx
-    # values = np.array([aux(env.step(state, a), maxim) for a in actions])  # <- for loop
-    # return values.argmax()
-
 
 def alpha_beta(state: State, maxim: bool, alpha: int, beta: int) -> int:
     raise NotImplementedError
@@ -30,6 +26,21 @@ def alpha_beta(state: State, maxim: bool, alpha: int, beta: int) -> int:
 
 def monte_carlo(state: State, maxim: bool, compute: int) -> int:
     raise NotImplementedError  # you do this
+
+
+def main(cfg):
+    global env
+    env = aigs.make(cfg.game)
+    state = env.init()
+    while not state.ended:
+        action = np.array(
+            [
+                minimax(env.step(state, action), not state.maxim)
+                for action in np.where(state.legal)
+            ]
+        ).argmax()
+        # minimax(state, state.maxim)
+        state: State = env.step(state, action)
 
 
 # %% Tasks

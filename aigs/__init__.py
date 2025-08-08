@@ -1,5 +1,8 @@
 from .games import TicTacToe, ConnectFour, Env
 from .types import State
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
 def make(game) -> Env:
