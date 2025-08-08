@@ -11,7 +11,7 @@ env: Env
 # %%
 def minimax(state: State, maxim: bool) -> int:
     def aux(state: State, maxim: bool):
-        if state.terminated:
+        if state.ended:
             return state.point
         else:
             temp: int = -1 if maxim else 1
@@ -27,7 +27,7 @@ def minimax(state: State, maxim: bool) -> int:
 
 def alpha_beta(state: State, maxim: bool) -> int:
     def aux(state: State, maxim: bool, alpha: int, beta: int):
-        if state.terminated:
+        if state.ended:
             return state.point
         else:
             temp: int = -1 if maxim else 1
@@ -57,7 +57,7 @@ def task_1(cfg):
     env = aigs.make(cfg.game)
     state: State = env.init()  # intialized game statess
 
-    while not state.terminated:
+    while not state.ended:
         action = minimax(state, state.maxim)
         state: State = env.step(state, action)
 
@@ -67,6 +67,6 @@ def task_2(cfg):
     env = aigs.make(cfg.game)
     state: State = env.init()  # intialized game statess
 
-    while not state.terminated:
+    while not state.ended:
         action = alpha_beta(state, state.maxim)
         state: State = env.step(state, action)

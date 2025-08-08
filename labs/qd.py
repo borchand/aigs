@@ -3,15 +3,11 @@
 # by: Noah Syrkis
 
 # Imports
-from transformers import FlaxViTModel
-
-
 import jax.numpy as np
 from jax import random
 from pgx import State
 from jaxtyping import Array
 
-# model = FlaxViTModel.from_pretrained("google/vit-base-patch16-224-in21k")
 
 # %% Setup
 # rng = random.PRNGKey(0)  # jax number generatorr

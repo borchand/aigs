@@ -7,6 +7,15 @@ from aigs.types import State, Env
 import numpy as np
 
 
+# ConnectFour
+class ConnectFour(Env):
+    def init(self) -> State:
+        raise NotImplementedError()  # You should implement this method
+
+    def step(self, state, action) -> State:
+        raise NotImplementedError()  # You should implement this method
+
+
 # TicTacToe
 class TicTacToe(Env):
     def init(self) -> State:
@@ -29,21 +38,13 @@ class TicTacToe(Env):
         )
 
         # is the game over?
-        terminated = (board != 0).all() | winner
+        ended = (board != 0).all() | winner
 
         # return the next state
         return State(
             board=board,
-            legal=board.flatten() == 0,
-            terminated=terminated,
+            legal=board.flatten() == 0,  # empty board positions
+            ended=ended,
             point=(1 if state.maxim else -1) if winner else 0,
             maxim=not state.maxim,
         )
-
-
-class ConnectFour(Env):
-    def init(self) -> State:
-        raise NotImplementedError()
-
-    def step(self, state, action) -> State:
-        raise NotImplementedError()

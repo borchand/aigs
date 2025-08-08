@@ -1,7 +1,11 @@
+# main.py
+#   main entry point
+# by: Noah Syrkis
+
+# Imports
 import labs
 import mlxp
 from functools import reduce
-from typing import
 
 
 @mlxp.launch(config_path="./conf")
