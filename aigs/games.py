@@ -39,7 +39,7 @@ class TicTacToe(Env):
             mask.all(axis=1).any()  # |
             or mask.all(axis=0).any()  # —
             or mask.trace() == 3  # \
-            or np.fliplr(board).trace() == 3  # /
+            or np.fliplr(mask).trace() == 3  # /
         )
 
         # is the game over?
