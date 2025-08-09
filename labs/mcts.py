@@ -28,9 +28,9 @@ def monte_carlo(state: State, maxim: bool, compute: int) -> int:
     raise NotImplementedError  # you do this
 
 
-def main(cfg):
+def main(ctx):
     global env
-    env = aigs.make(cfg.game)
+    env = aigs.make(ctx.config.mcts.game)
     state = env.init()
     while not state.ended:
         action = np.array(
@@ -44,9 +44,9 @@ def main(cfg):
 
 
 # %% Tasks
-def task_1(cfg):
+def task_1(ctx):
     global env
-    env = aigs.make(cfg.game)
+    env = aigs.make(ctx.config.mcts.game)
     state: State = env.init()  # intialized game statess
 
     while not state.ended:
@@ -54,11 +54,11 @@ def task_1(cfg):
         state: State = env.step(state, action)
 
 
-def task_2(cfg):
+def task_2(ctx):
     global env
-    env = aigs.make(cfg.game)
+    env = aigs.make(ctx.config.mcts.game)
     state: State = env.init()  # intialized game statess
 
-    while not state.ended:
-        action = alpha_beta(state, state.maxim)
-        state: State = env.step(state, action)
+    # while not state.ended:
+    # action = alpha_beta(state, state.maxim)
+    # state: State = env.step(state, action)

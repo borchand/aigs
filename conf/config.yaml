@@ -1,4 +1,10 @@
 task: "mcts.main"
-args:
+
+qd:
   n: 10
-game: "tic_tac_toe"
+  p: 0.1
+  rep: "turtle"
+  game: "smb"
+
+mcts:
+  game: "tic_tac_toe"
