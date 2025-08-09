@@ -1,2 +1,4 @@
-game: "tic_tac_toe"
 task: "mcts.main"
+args:
+  n: 10
+game: "tic_tac_toe"

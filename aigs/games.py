@@ -7,7 +7,7 @@ from aigs.types import State, Env
 import numpy as np
 
 
-# ConnectFour
+# connect four
 class ConnectFour(Env):
     def init(self) -> State:
         raise NotImplementedError()  # You should implement this method
@@ -19,7 +19,7 @@ class ConnectFour(Env):
         raise NotImplementedError()  # You should implement this method
 
 
-# TicTacToe
+# tic tac toe
 class TicTacToe(Env):
     def init(self) -> State:
         board = np.zeros((3, 3), dtype=np.int8)
@@ -33,7 +33,7 @@ class TicTacToe(Env):
         assert board[action // 3, action % 3] == 0
         board[action // 3, action % 3] = 1 if state.maxim else 2
 
-        # did it win?
+        # was it a winning move?
         mask = board.copy() == (1 if state.maxim else 2)
         winner: bool = (
             mask.all(axis=1).any()  # |
@@ -42,7 +42,7 @@ class TicTacToe(Env):
             or np.fliplr(mask).trace() == 3  # /
         )
 
-        # is the game over?
+        # game over?
         ended = (board != 0).all() | winner
 
         # return the next state

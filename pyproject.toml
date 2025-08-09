@@ -20,7 +20,7 @@ dependencies = [
     "pgx>=2.6.0",
     "pygame>=2.6.1",
     "qdax>=0.5.0",
-    "gym-pcgrl @ git+https://github.com/syrkis/gym-pcgrl.git",
+    "pcgym @ git+https://github.com/syrkis/pcgym.git",
     # "scenic @ git+https://github.com/google-research/scenic.git",
 ]
 

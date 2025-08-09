@@ -2,7 +2,7 @@ from .games import TicTacToe, ConnectFour, Env
 from .types import State
 import warnings
 
-warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def make(game) -> Env:
