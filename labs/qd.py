@@ -7,7 +7,10 @@ import numpy as np
 from pcgym.envs import PcgrlEnv
 from typing import Tuple
 from pcgym.envs.helper import get_string_map
+import qdax
+from qdax.core.map_elites import MAPElites
 from PIL import Image
+from qdax.core.emitters.mutation_operators import polynomial_mutation
 
 
 # %% Init population (maps)
@@ -19,11 +22,12 @@ def init(cfg) -> Tuple[PcgrlEnv, np.ndarray]:
 
 
 # %% using gym-pcg to evaluate map quality
-def eval(env, p) -> Tuple[int, dict]:
+def eval(env, p) -> Tuple[int, np.ndarray]:
     env._rep._map = p
     string_map = get_string_map(env._rep._map, env._prob.get_tile_types())
     stats = env._prob.get_stats(string_map)
-    return env._prob.get_reward(stats, {k: 0 for k in stats.keys()}), stats
+    behavior = np.array([stats["disjoint-tubes"], stats["empty"]])
+    return env._prob.get_reward(stats, {k: 0 for k in stats.keys()}), behavior
 
 
 def mutate(cfg, env, p) -> np.ndarray:
@@ -32,10 +36,17 @@ def mutate(cfg, env, p) -> np.ndarray:
     return p
 
 
+def archive(state, p):
+    pass
+
+
 # %% Setup
 def main(ctx):
     env, pop = init(ctx.config)
-    fitness, behavior = zip(*list(map(lambda p: eval(env, p), pop)))
-    print(fitness)
-    print(behavior)
+    env._rep._mep = pop[0]
+    Image.fromarray(env.render()).save("map.png")
+    fitness, behavior = map(np.array, zip(*list(map(lambda p: eval(env, p), pop))))
+    print(behavior.shape, fitness.shape)
+    # print(fitness)
+    # print(behavior)
     # print(list(map(lambda p: mutate(ctx.config, env, p), pop)))

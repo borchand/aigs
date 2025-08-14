@@ -1096,7 +1096,7 @@ wheels = [
 [[package]]
 name = "pcgym"
 version = "0.4.0"
-source = { git = "https://github.com/syrkis/pcgym.git#1a7efb16bbea54deec7968a9784b937ac6b05767" }
+source = { git = "https://github.com/syrkis/pcgym.git#22b5c6a419b54562758bddff87a1aed49873af86" }
 dependencies = [
     { name = "gymnasium" },
     { name = "matplotlib" },
