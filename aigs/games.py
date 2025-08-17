@@ -31,7 +31,7 @@ class TicTacToe(Env):
         # make your move
         board = state.board.copy()
         # print(action)
-        assert board[action // 3, action % 3] == 0
+        # assert board[action // 3, action % 3] == 0, f"Invalid move: {action}"
         board[action // 3, action % 3] = 1 if state.maxim else -1
 
         # was it a winning move?
@@ -43,14 +43,11 @@ class TicTacToe(Env):
             or np.fliplr(mask).trace() == 3  # /
         )
 
-        # game over?
-        ended = (board != 0).all() | winner
-
         # return the next state
         return State(
             board=board,
             legal=board.flatten() == 0,  # empty board positions
-            ended=ended,
+            ended=(board != 0).all() | winner,
             point=(1 if state.maxim else -1) if winner else 0,
             maxim=not state.maxim,
         )

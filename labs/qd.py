@@ -7,8 +7,9 @@ import numpy as np
 from pcgym.envs import PcgrlEnv
 from typing import Tuple
 from pcgym.envs.helper import get_string_map
-import qdax
-from qdax.core.map_elites import MAPElites
+
+# import qdax
+# from qdax.core.map_elites import MAPElites
 from PIL import Image
 from qdax.core.emitters.mutation_operators import polynomial_mutation
 

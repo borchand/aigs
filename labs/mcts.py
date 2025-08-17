@@ -13,10 +13,14 @@ def minimax(state: State, maxim: bool) -> int:
     if state.ended:
         return state.point
     else:
-        temp: int = -1 if maxim else 1
-        for action in np.where(state.legal)[0]:  # for all legal actions
-            value = minimax(env.step(state, action), not maxim)
+        temp: int = -10 if maxim else 10
+        for a in np.where(state.legal)[0]:  # for all legal actions
+            value = minimax(env.step(state, a), not state.maxim)
             temp = max(temp, value) if maxim else min(temp, value)
+            print(np.where(state.legal)[0])
+            print("action", a, "value", value, "temp", temp, state.player)
+            print(state)
+            print()
         return temp
 
 
@@ -44,15 +48,15 @@ def main(cfg):
 
 # %% calls and evaluates the different kinds of action functions
 def action_fn(cfg, env: Env, s: State) -> int:
-    actions = np.where(s.legal)[0]
+    actions = np.where(s.legal)[0]  # the actions to choose from
+
     match getattr(cfg, s.player):
         case "random":
             return np.random.choice(actions).item()
 
         case "human":
             print(s, end="\n\n")
-            action = int(input("Place your piece: "))
-            return action
+            return int(input("Place your piece: "))
 
         case "minimax":
             values = [minimax(env.step(s, a), not s.maxim) for a in actions]
