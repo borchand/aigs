@@ -30,11 +30,12 @@ class TicTacToe(Env):
     def step(self, state, action) -> State:
         # make your move
         board = state.board.copy()
+        # print(action)
         assert board[action // 3, action % 3] == 0
-        board[action // 3, action % 3] = 1 if state.maxim else 2
+        board[action // 3, action % 3] = 1 if state.maxim else -1
 
         # was it a winning move?
-        mask = board.copy() == (1 if state.maxim else 2)
+        mask = board == (1 if state.maxim else -1)
         winner: bool = (
             mask.all(axis=1).any()  # |
             or mask.all(axis=0).any()  # —
@@ -54,15 +55,15 @@ class TicTacToe(Env):
             maxim=not state.maxim,
         )
 
-    def play(self, state: State) -> State:
-        while not state.ended:
-            print(state)
-            action: int = int(input(f"{'x' if state.maxim else 'o'} move: "))
-            state: State = self.step(state, action)
-        print(
-            state,
-            (("x" if state.point == 1 else "o") + " won")
-            if state.point != 0
-            else "draw",
-        )
-        return state
+    # def play(self, state: State) -> State:
+    #     while not state.ended:
+    #         print(state)
+    #         action: int = int(input(f"{'x' if state.maxim else 'o'} move: "))
+    #         state: State = self.step(state, action)
+    #     print(
+    #         state,
+    #         (("x" if state.point == 1 else "o") + " won")
+    #         if state.point != 0
+    #         else "draw",
+    #     )
+    #     return state

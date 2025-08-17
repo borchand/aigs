@@ -17,10 +17,14 @@ class State:
     def minim(self):  # or are we player 2 (minim)?
         return not self.maxim
 
+    @property
+    def player(self):
+        return "maxim" if self.maxim else "minim"
+
     def __str__(self) -> str:
-        return " " + str(self.board)[1:-1].replace("1", "x").replace("0", ".").replace(
-            "[", ""
-        ).replace("]", "").replace("2", "o")
+        return " " + str(self.board)[1:-1].replace("-1", " x").replace(
+            "1", "o"
+        ).replace("0", ".").replace("[", "").replace("]", "")
 
 
 class Env(ABC):
@@ -34,6 +38,6 @@ class Env(ABC):
     def step(self, state, action) -> State:
         pass
 
-    @abstractmethod
-    def play(self, state):
-        pass
+    # @abstractmethod
+    # def play(self, state):
+    #     pass
