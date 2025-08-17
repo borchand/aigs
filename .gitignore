@@ -1,4 +1,5 @@
 # Python-generated files
+multirun.yaml
 __pycache__/
 *.py[oc]
 build/
