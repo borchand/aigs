@@ -8,5 +8,5 @@ qd:
 
 mcts:
   game: "tic_tac_toe"
-  maxim: "random"
+  maxim: "minimax"
   minim: "minimax"

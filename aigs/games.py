@@ -15,14 +15,11 @@ class ConnectFour(Env):
     def step(self, state, action) -> State:
         raise NotImplementedError()  # You should implement this method
 
-    def play(self, state) -> State:
-        raise NotImplementedError()  # You should implement this method
-
 
 # tic tac toe
 class TicTacToe(Env):
     def init(self) -> State:
-        board = np.zeros((3, 3), dtype=np.int8)
+        board = np.zeros((3, 3), dtype=int)
         legal = board.flatten() == 0
         state = State(board=board, legal=legal)
         return state
@@ -30,8 +27,7 @@ class TicTacToe(Env):
     def step(self, state, action) -> State:
         # make your move
         board = state.board.copy()
-        # print(action)
-        # assert board[action // 3, action % 3] == 0, f"Invalid move: {action}"
+        assert board[action // 3, action % 3] == 0, f"Invalid move: {action}"
         board[action // 3, action % 3] = 1 if state.maxim else -1
 
         # was it a winning move?

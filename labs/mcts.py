@@ -17,10 +17,6 @@ def minimax(state: State, maxim: bool) -> int:
         for a in np.where(state.legal)[0]:  # for all legal actions
             value = minimax(env.step(state, a), not state.maxim)
             temp = max(temp, value) if maxim else min(temp, value)
-            print(np.where(state.legal)[0])
-            print("action", a, "value", value, "temp", temp, state.player)
-            print(state)
-            print()
         return temp
 
 
@@ -43,7 +39,7 @@ def main(cfg):
         action = action_fn(cfg, env, state)
         state = env.step(state, action)
 
-    print(f"{['.', 'o', 'x'][state.point]} won", state, sep="\n")
+    print(f"{['nobody', 'o', 'x'][state.point]} won", state, sep="\n")
 
 
 # %% calls and evaluates the different kinds of action functions
@@ -60,11 +56,11 @@ def action_fn(cfg, env: Env, s: State) -> int:
 
         case "minimax":
             values = [minimax(env.step(s, a), not s.maxim) for a in actions]
-            return np.argmax(values).item() if s.maxim else np.argmin(values).item()
+            return actions[np.argmax(values) if s.maxim else np.argmin(values)]
 
         case "alpha_beta":
             values = [alpha_beta(env.step(s, a), not s.maxim, -1, 1) for a in actions]
-            return np.argmax(values).item() if s.maxim else np.argmin(values).item()
+            return actions[np.argmax(values) if s.maxim else np.argmin(values)]
 
         case "monte_carlo":
             raise NotImplementedError
