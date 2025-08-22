@@ -6,7 +6,8 @@ To get up and running:
 2. Clone this repo `git clone https://github.com/syrkis/aigs.git`
 3. Sync `uv sync` in the repo.
 
-Open the repo in your IDE. You can run the code with our dependencies using `uv run python main.py`
+Open the repo in your IDE. You can run the code with our dependencies using `uv run python main.py`.
+For your own project, you can add our code as a dependency, with `uv add aigs` or `pip install aigs`.
 
 ## labs
 

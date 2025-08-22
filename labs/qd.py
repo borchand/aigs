@@ -11,7 +11,7 @@ from pcgym.envs.helper import get_string_map
 # import qdax
 # from qdax.core.map_elites import MAPElites
 from PIL import Image
-from qdax.core.emitters.mutation_operators import polynomial_mutation
+# from qdax.core.emitters.mutation_operators import polynomial_mutation
 
 
 # %% Init population (maps)
