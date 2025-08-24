@@ -7,6 +7,8 @@ To get up and running:
 3. Sync `uv sync` in the repo.
 
 Open the repo in your IDE. You can run the code with our dependencies using `uv run python main.py`.
+Modify in `conf/config.yaml` to change the parameters you pass in `cfg`.
+You can modify these through the cli: `uv run python main.py task=qd`, changes the value of task to `qd` from `mcts`.
 For your own project, you can add our code as a dependency, with `uv add aigs` or `pip install aigs`.
 
 ## labs

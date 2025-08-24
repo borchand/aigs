@@ -16,8 +16,8 @@ def minimax(state: State, maxim: bool) -> int:
         return state.point
     else:
         temp: int = -10 if maxim else 10
-        for a in np.where(state.legal)[0]:  # for all legal actions
-            value = minimax(env.step(state, a), not state.maxim)
+        for action in np.where(state.legal)[0]:  # for all legal actions
+            value = minimax(env.step(state, action), not maxim)
             temp = max(temp, value) if maxim else min(temp, value)
         return temp
 
@@ -91,35 +91,36 @@ def backup(node, delta) -> None:
 def main(cfg) -> None:
     global env
     env = aigs.make(cfg.game)
-    s = env.init()
+    state = env.init()
 
-    while not s.ended:
-        actions = np.where(s.legal)[0]  # the actions to choose from
+    while not state.ended:
+        actions = np.where(state.legal)[0]  # the actions to choose from
 
-        match getattr(cfg, s.player):
+        match getattr(cfg, state.player):
             case "random":
                 a = np.random.choice(actions).item()
 
             case "human":
-                print(s, end="\n\n")
+                print(state, end="\n\n")
                 a = int(input("Place your piece: "))
 
             case "minimax":
-                values = [minimax(env.step(s, a), not s.maxim) for a in actions]
-                a = actions[np.argmax(values) if s.maxim else np.argmin(values)]
+                values = [minimax(env.step(state, a), not state.maxim) for a in actions]
+                a = actions[np.argmax(values) if state.maxim else np.argmin(values)]
 
             case "alpha_beta":
                 values = [
-                    alpha_beta(env.step(s, a), not s.maxim, -1, 1) for a in actions
+                    alpha_beta(env.step(state, a), not state.maxim, -1, 1)
+                    for a in actions
                 ]
-                a = actions[np.argmax(values) if s.maxim else np.argmin(values)]
+                a = actions[np.argmax(values) if state.maxim else np.argmin(values)]
 
             case "monte_carlo":
                 raise NotImplementedError
 
             case _:
-                raise ValueError(f"Unknown player {s.player}")
+                raise ValueError(f"Unknown player {state.player}")
 
-        s = env.step(s, a)
+        state = env.step(state, a)
 
-    print(f"{['nobody', 'o', 'x'][s.point]} won", s, sep="\n")
+    print(f"{['nobody', 'o', 'x'][state.point]} won", state, sep="\n")

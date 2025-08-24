@@ -28,3 +28,6 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 include = ["aigs*"]
+
+[tool.ruff]
+line-length = 120
