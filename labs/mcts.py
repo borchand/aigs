@@ -64,6 +64,7 @@ def expand(v: Node) -> Node:
     a: int = np.random.choice(np.where(v.state.legal)[0])
     v_prime = Node(state=env.step(v.state, a), action=a, parent=v)
     v.children.append(v_prime)
+    v.expanded = True
     return v_prime
 
 
@@ -109,10 +110,7 @@ def main(cfg) -> None:
                 a = actions[np.argmax(values) if state.maxim else np.argmin(values)]
 
             case "alpha_beta":
-                values = [
-                    alpha_beta(env.step(state, a), not state.maxim, -1, 1)
-                    for a in actions
-                ]
+                values = [alpha_beta(env.step(state, a), not state.maxim, -1, 1) for a in actions]
                 a = actions[np.argmax(values) if state.maxim else np.argmin(values)]
 
             case "monte_carlo":
