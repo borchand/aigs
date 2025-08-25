@@ -29,12 +29,7 @@ def alpha_beta(state: State, maxim: bool, alpha: int, beta: int) -> int:
 @dataclass
 class Node:
     state: State
-    N: int = 0
-    Q: int = 0
-    parent: Node | None = None
-    action: int | None = None
-    expanded: bool = False
-    children: list[Node] = field(default_factory=list)
+    raise NotImplementedError  # Add more fields
 
 
 # Intuitive but difficult in terms of code
@@ -42,50 +37,24 @@ def monte_carlo(state: State, cfg) -> int:
     raise NotImplementedError  # you do this
 
 
-def uct_search(state: State, cfg):
-    root = Node(state=state)
-    for i in range(cfg.compute):
-        node = tree_policy(root, cfg)
-        delta = default_policy(node.state)
-        backup(node, delta)
-    return best_child(root, 0).action  # exploit time
-
-
 def tree_policy(node: Node, cfg) -> Node:
-    while not node.state.ended:
-        if not node.expanded:
-            return expand(node)
-        else:
-            node = best_child(node, 1 / np.sqrt(2))  # explore time
-    return node
+    raise NotImplementedError  # you do this
 
 
 def expand(v: Node) -> Node:
-    a: int = np.random.choice(np.where(v.state.legal)[0])
-    v_prime = Node(state=env.step(v.state, a), action=a, parent=v)
-    v.children.append(v_prime)
-    v.expanded = True
-    return v_prime
+    raise NotImplementedError  # you do this
 
 
 def best_child(root: Node, c) -> Node:
-    f = lambda node: node.Q / node.N + c * (2 * np.log(root.N) / node.N) ** 0.5  # noqa
-    return root.children[np.array([f(node) for node in root.children]).argmax()]
+    raise NotImplementedError  # you do this
 
 
 def default_policy(state: State) -> int:
-    while not state.ended:
-        a = np.random.choice(np.where(state.legal)[0])
-        state = env.step(state, a)
-    return state.point
+    raise NotImplementedError  # you do this
 
 
 def backup(node, delta) -> None:
-    while node is not None:
-        node.N += 1
-        node.Q += delta
-        delta: int = -delta  # flip player
-        node: Node | None = node.parent
+    raise NotImplementedError  # you do this
 
 
 # Main function
