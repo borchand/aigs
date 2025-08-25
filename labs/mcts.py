@@ -28,8 +28,7 @@ def alpha_beta(state: State, maxim: bool, alpha: int, beta: int) -> int:
 
 @dataclass
 class Node:
-    state: State
-    raise NotImplementedError  # Add more fields
+    state: State  # Add more fields
 
 
 # Intuitive but difficult in terms of code
@@ -72,7 +71,7 @@ def main(cfg) -> None:
 
             case "human":
                 print(state, end="\n\n")
-                a = int(input("Place your piece: "))
+                a = int(input(f"Place your piece ({'x' if state.minim else 'o'}): "))
 
             case "minimax":
                 values = [minimax(env.step(state, a), not state.maxim) for a in actions]
