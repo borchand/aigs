@@ -25,6 +25,6 @@ For your own project, you can add our code as a dependency, with `uv add aigs` o
   2. create a dataset of different solvable levels
 - llm lab
 
-## Exam
+<!--## Exam-->
 
-1. Make your own game that is more awesome than default unity, and train ppo on it
+<!--1. Make your own game that is more awesome than default unity, and train ppo on it-->

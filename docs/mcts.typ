@@ -74,6 +74,7 @@ or whatever.) You have to:
 - Copy your minimax function, and add a depth parameter
 - Modify the function to return winner if terminated or heuristic value of depth
   is 0
+- Think about how a neural network could be used here
 
 
 
