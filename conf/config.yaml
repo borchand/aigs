@@ -8,7 +8,7 @@ qd:
 
 mcts:
   game: "tic_tac_toe"
-  maxim: "human"
+  maxim: "minimax"
   minim: "minimax"
   compute: 10
   c: 0.9

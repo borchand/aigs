@@ -9,9 +9,9 @@
 #align(center, text(1.5em, tracking: 0.1em, upper[Monte Carlo Tree Search]))
 #v(2em)
 
-This is the first of three labs. Its purpose is to _1)_ allow you to get
-hands-on experience with game trees, and _2)_ to ensure that your computer setup
-is up and running. Having installed `uv`#footnote[#link(
+This is the first of three (or four) labs. Its purpose is to _1)_ allow you to
+get hands-on experience with game trees, and _2)_ to ensure that your computer
+setup is up and running. Having installed `uv`#footnote[#link(
   "https://docs.astral.sh/uv/",
   "docs.astral.sh/uv",
 )] (python installer and dependency manager), and cloned our repo
@@ -22,8 +22,8 @@ is up and running. Having installed `uv`#footnote[#link(
 #footnote[#link(
   "https://zed.dev",
   "zed.dev",
-)] or VS Code as your editor, but anything (including Notepad++) will do. We
-will explore this lab in the coming sessions.
+)] if you are on a Unix system and Notepad++, VSCode or Sublime if you are not
+(but anything will do). We will explore this lab in the coming sessions.
 
 = Connect four
 
@@ -77,7 +77,7 @@ or whatever.) You have to:
 
 
 
-= Monte Carlo tree search
+= Monte Carlo tree search (famously hard for games students)
 
 Even with $alpha-beta$ pruning, we are still exhaustively searching through the
 game tree (in what we know for sure not to be dead ends). Why not just sample?

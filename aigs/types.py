@@ -22,9 +22,9 @@ class State:
         return "maxim" if self.maxim else "minim"
 
     def __str__(self) -> str:
-        return " " + str(self.board)[1:-1].replace("-1", " x").replace(
-            "1", "o"
-        ).replace("0", ".").replace("[", "").replace("]", "")
+        return " " + str(self.board)[1:-1].replace("-1", " x").replace("1", "o").replace("0", ".").replace(
+            "[", ""
+        ).replace("]", "")
 
 
 class Env(ABC):
@@ -37,7 +37,3 @@ class Env(ABC):
     @abstractmethod
     def step(self, state, action) -> State:
         pass
-
-    # @abstractmethod
-    # def play(self, state):
-    #     pass
