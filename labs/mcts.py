@@ -88,5 +88,6 @@ def main(cfg) -> None:
                 raise ValueError(f"Unknown player {state.player}")
 
         state = env.step(state, a)
+        print(state)
 
     print(f"{['nobody', 'o', 'x'][state.point]} won", state, sep="\n")

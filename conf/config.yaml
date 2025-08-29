@@ -7,7 +7,7 @@ qd:
   game: "smb"
 
 mcts:
-  game: "tic_tac_toe"
+  game: "connect_four"
   maxim: "human"
   minim: "minimax"
   compute: 10

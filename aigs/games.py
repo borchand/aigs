@@ -12,12 +12,57 @@ class ConnectFour(Env):
     def init(self) -> State:
         board = np.zeros((6, 7), dtype=int)
         legal = board[0] == 0
+
         state = State(board=board, legal=legal)
         return state
 
     def step(self, state, action) -> State:
-        # hint: use x.diagonal(i)
-        raise NotImplementedError
+    
+        # make your move
+        board = state.board.copy()
+
+        action_col = board[:, action]
+        assert action_col[0] == 0, f"Invalid move: {action}"
+
+        avalible_row_idx = np.where(action_col == 0)[0][-1]
+
+        board[avalible_row_idx][action] = 1 if state.maxim else -1
+
+        # abs sum of board
+        mask = board == (1 if state.maxim else -1)
+
+        rows = [row for row in mask]
+        cols = [col for col in mask.T]
+
+        row_diags = [mask.diagonal(i) for i in range(-6, 7)]
+        col_diags = [mask.T.diagonal(i) for i in range(-7, 6)]
+
+        winner = False
+        for v in rows + cols + row_diags + col_diags:
+            if self.connect_four_test(v):
+                winner = True
+                break
+
+        legal = board[0] == 0
+
+        return State(
+            board=board,    
+            legal=legal,
+            ended=winner or not legal.any(),
+            point=(1 if state.maxim else -1) if winner else 0,
+            maxim=not state.maxim,
+        )
+    
+    def connect_four_test(self, v):
+        if len(v) < 4:
+            return False
+        
+        for i in range(len(v) - 3):
+            if v[i] and v[i + 1] and v[i + 2] and v[i + 3]:
+                return True
+
+        return False
+
 
 
 # tic tac toe
