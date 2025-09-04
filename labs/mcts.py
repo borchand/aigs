@@ -72,15 +72,15 @@ def main(cfg) -> None:
         match getattr(cfg, state.player):
             case "random":
                 a = np.random.choice(actions).item()
+                print(f"random plays {a}")
 
             case "human":
-                print(state, end="\n\n")
                 a = int(input(f"Place your piece ({'x' if state.minim else 'o'}): "))
 
             case "minimax":
                 values = [minimax(env.step(state, a), not state.maxim) for a in actions]
                 a = actions[np.argmax(values) if state.maxim else np.argmin(values)]
-
+                print(f"minimax plays {a}")
             case "alpha_beta":
                 values = [alpha_beta(env.step(state, a), not state.maxim, -1, 1) for a in actions]
                 a = actions[np.argmax(values) if state.maxim else np.argmin(values)]
