@@ -9,6 +9,7 @@ qd:
 mcts:
   game: "connect_four"
   maxim: "human"
-  minim: "minimax"
+  minim: "random"
   compute: 10
   c: 0.9
+  blahbalh: "sss"

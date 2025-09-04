@@ -7,6 +7,17 @@ from aigs.types import State, Env
 import numpy as np
 
 
+def connect_four_test(v):
+    if len(v) < 4:
+        return False
+
+    for i in range(len(v) - 3):
+        if v[i] and v[i + 1] and v[i + 2] and v[i + 3]:
+            return True
+    else:
+        return False
+
+
 # connect four
 class ConnectFour(Env):
     def init(self) -> State:
@@ -17,7 +28,7 @@ class ConnectFour(Env):
         return state
 
     def step(self, state, action) -> State:
-    
+
         # make your move
         board = state.board.copy()
 
@@ -46,24 +57,22 @@ class ConnectFour(Env):
         legal = board[0] == 0
 
         return State(
-            board=board,    
+            board=board,
             legal=legal,
             ended=winner or not legal.any(),
             point=(1 if state.maxim else -1) if winner else 0,
             maxim=not state.maxim,
         )
-    
+
     def connect_four_test(self, v):
         if len(v) < 4:
             return False
-        
+
         for i in range(len(v) - 3):
             if v[i] and v[i + 1] and v[i + 2] and v[i + 3]:
                 return True
 
         return False
-
-
 
 # tic tac toe
 class TicTacToe(Env):
@@ -85,7 +94,7 @@ class TicTacToe(Env):
             mask.all(axis=1).any()  # |
             or mask.all(axis=0).any()  # —
             or mask.trace() == 3  # \
-            or np.fliplr(mask).trace() == 3  # /
+            or mask.T.trace() == 3  # /
         )
 
         # return the next state
