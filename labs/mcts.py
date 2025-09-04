@@ -15,7 +15,7 @@ def heuristic_value(board: np.ndarray) -> int:
 
 
 # %%
-def minimax(state: State, maxim: bool, depth: int) -> int:
+def minimax(state: State, maxim: bool, depth: int = 0) -> int:
     if state.ended or depth > 10:
         return state.point if state.ended else heuristic_value(state.board)
     else:
