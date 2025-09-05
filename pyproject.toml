@@ -10,7 +10,6 @@ dependencies = [
     "gym-super-mario-bros>=7.4.0",
     "gymnasium>=1.1.1",
     "jax<0.5",
-    "jaxlib>=0.5.3",
     "mctx>=0.0.5",
     "mlxp>=1.0.4",
     "pettingzoo>=1.25.0",
