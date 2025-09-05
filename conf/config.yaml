@@ -1,4 +1,4 @@
-task: "mcts"
+task: "ann"
 
 qd:
   n: 10
@@ -13,3 +13,7 @@ mcts:
   compute: 10
   c: 0.9
   blahbalh: "sss"
+
+ann:
+  hidden: 30
+  epochs: 10
