@@ -1,33 +1,52 @@
 # %% Imports
 from sklearn.datasets import fetch_openml
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import jax.numpy as jnp
+from jax import grad
 
 # %%
 mnist = fetch_openml("mnist_784", version=1)
-X = np.array(mnist.data.astype("float32"))  # shape (70000, 784)
-y = np.array(np.eye(10)[mnist.target.astype("int64")])  # shape (70000,)
+X = jnp.array(mnist.data.astype("float32"))  # shape (70000, 784)
+y = jnp.array(np.eye(10)[mnist.target.astype("int64")])  # shape (70000,)
 
 
-def relu(x):
-    return np.maximum(0, x)
+def apply_fn(params, X):
+    return relu(relu(X @ params["W_1"]) @ params["W_2"])
 
 
-def optim(W_1, W_2, loss):
-    raise NotImplementedError
+def init_fn(cfg):
+    return {
+        "W_1": jnp.array(np.random.randn(X.shape[1], cfg.hidden)) * 0.01,
+        "W_2": jnp.array(np.random.randn(cfg.hidden, 10)) * 0.01,
+    }
 
 
 def main(cfg):
-    # init params
-    W_1 = np.random.rand(X.shape[1], cfg.hidden)
-    W_2 = np.random.rand(cfg.hidden, 10)
+    params = init_fn(cfg)
+    grad_fn = grad(loss_fn)
 
     # model output
     for epoch in range(cfg.epochs):
-        y_hat = relu(X @ W_1) @ W_2
-        loss = loss_fn(y, y_hat)
-        # W_1, W_2 = optim(W_1, W_2, loss)
-        print(loss)
+        grads = grad_fn(params, X, y)
+        sns.heatmap(np.array(grads["W_2"]))
+        plt.show()
+        params = {"W_1": params["W_1"] - cfg.lr * grads["W_1"], "W_2": params["W_2"] - cfg.lr * grads["W_2"]}
+        loss = loss_fn(params, X, y)
+        print(f"Epoch {epoch}: Loss = {loss}, Accuracy = {acc(y, apply_fn(params, X))}")
+
+    return params
 
 
-def loss_fn(y, y_hat):
-    return np.abs(y - y_hat).mean()
+def loss_fn(params, X, y):
+    y_hat = apply_fn(params, X)
+    return ((y - y_hat) ** 2).mean()
+
+
+def relu(x):
+    return jnp.maximum(0, x)
+
+
+def acc(y, y_hat):
+    return (jnp.argmax(y, axis=1) == jnp.argmax(y_hat, axis=1)).mean()

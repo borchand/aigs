@@ -16,4 +16,6 @@ mcts:
 
 ann:
   hidden: 30
-  epochs: 10
+  epochs: 1000
+  silas: 0.00001
+  lr: 0.001
