@@ -24,7 +24,7 @@ want to cover/explore.
 Today (September 16th, 2025) we will be playing with evolutionary algorithms, as
 a way to get ready for quality diversity algorithms. Evolutionary algorithms are
 at their core, extremely intuitive: randomly mutate, see what works, and then
-further mutate on that. Inspired by the frequent bifurcation of species into
+further mutate on that. Inspired by the frequent bifurcation of species into two
 sexes, we can further mix parts of one good solution with another, combining
 them to get a new (perhaps even better solution). You will now:
 1. Select a test function for optimization #footnote[#link(
@@ -38,12 +38,12 @@ them to get a new (perhaps even better solution). You will now:
 
 Recall that Gym @towers2024 is a framework for reinforcement learning
 environments, consisting of an `init` and a `step` method (the same as those in
-our `aigs/games.py` file). Recall further that procedural content generation
-(PCG) focuses on the _procedure_ that generates a given piece of content, rather
-than the content itself. To that effect we have made `pcgym` #box[(itself
-  derived from `pcgrl` @khalifa2020)] that enables quick ideation of levels,
-supporting the kind of methods this lab is meant to have you play with. You will
-now:
+our `aigs/games.py` file). Note further that (as the term suggests) procedural
+content generation (PCG) focuses on the _procedure_ that generates a given piece
+of content, rather than the content itself. To that effect we have made `pcgym`
+#box[(itself derived from `pcgrl` @khalifa2020)] that enables quick ideation of
+levels, supporting the kind of methods this lab is meant to have you play with.
+You will now:
 1. Explore `pcgym` #footnote[My fork of `gym-pcgrl` modified to work with our
     course. It is located at #link(
       "https://github.com/syrkis/pcgym",
