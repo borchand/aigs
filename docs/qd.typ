@@ -21,18 +21,36 @@ want to cover/explore.
 
 = Evolutionary algorithms
 
+
+
 Today (September 16th, 2025) we will be playing with evolutionary algorithms, as
 a way to get ready for quality diversity algorithms. Evolutionary algorithms are
 at their core, extremely intuitive: randomly mutate, see what works, and then
 further mutate on that. Inspired by the frequent bifurcation of species into two
-sexes, we can further mix parts of one good solution with another, combining
-them to get a new (perhaps even better solution). You will now:
+sexes\*, we can further mix parts of one good solution with another, combining
+them to get a new (perhaps even better solution).
+
+#figure(pseudocode-list(stroke: none, line-numbering: none)[
+  _Evolutionary optimization pseudocode_
+  + *for* generation in range(N)
+    + fitness = eval_function(population)
+    + idxs = argsort(population)
+    + population = population[idxs]
+    + population = cross_over(population, n)
+    + population = mutate(population)
+  + *end*
+])
+
+You will now:
 1. Select a test function for optimization #footnote[#link(
     "https://en.wikipedia.org/wiki/Test_functions_for_optimization",
   )]
 2. Implement it in python (and visualize it)
 3. Find its optimal solution using an evolutionary algorithm from the lecture
 4. Make some cool plots of the results (get creative)
+
+
+
 
 = PCGYM
 
