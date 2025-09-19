@@ -61,15 +61,19 @@ def init_pcgym(cfg) -> Tuple[PcgrlEnv, np.ndarray]:
     return env, pop
 
 
+#########################################################################
+##  BELOW HERE THERE BE DRAGONS (left over stuff i played around with) ##
+#########################################################################
+
 # %% Plotting function that I think we should put in utils.py
-def our_plot_function(fn):
-    x1 = np.linspace(-10, 10, 100)
-    x2 = np.linspace(-10, 10, 100)
-    xs = np.stack(np.meshgrid(x1, x2), axis=-1)
-    ys = fn(xs)
-    plt.imshow(ys, cmap="viridis")
-    plt.colorbar()
-    plt.show()
+# def our_plot_function(fn):
+#     x1 = np.linspace(-10, 10, 100)
+#     x2 = np.linspace(-10, 10, 100)
+#     xs = np.stack(np.meshgrid(x1, x2), axis=-1)
+#     ys = fn(xs)
+#     plt.imshow(ys, cmap="viridis")
+#     plt.colorbar()
+#     plt.show()
 
 
 # env, pop = init(ctx.config)
