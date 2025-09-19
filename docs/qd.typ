@@ -94,6 +94,10 @@ Play around with pic breeder by:
 1. Drawing something
 2. Trying to then find it
 
+= Novelty search
+
+In `pcgym` make a setup that finds _new_ levels.
+
 = Content generation
 
 We can optimize levels, just like we can optimize players. Thinking about what
