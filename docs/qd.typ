@@ -90,7 +90,7 @@ now:
 
 = picbreeder
 
-- Play around with pic breeder by:
+Play around with pic breeder by:
 1. Drawing something
 2. Trying to then find it
 
