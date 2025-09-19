@@ -1,5 +1,5 @@
 #let lab(title: str, date: str, doc) = {
   set text(font: "David Libre")
-  text(title)
+  // text(title)
   doc
 }
