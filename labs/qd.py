@@ -8,6 +8,7 @@ from functools import partial
 import matplotlib.pyplot as plt
 from typing import Tuple
 from pcgym import PcgrlEnv
+from PIL import Image
 
 
 # %% n-dimensional function with a strange topology
@@ -36,21 +37,9 @@ def step(pop, cfg):
 
 # %% Setup
 def main(cfg):
-    pop = np.random.rand(cfg.population, cfg.dimensions)
-    fitnesses = []
-    for gen in range(cfg.generation):
-        break
-        pop, fitness = step(pop, cfg)
-        fitnesses.append(fitness.min())
-        print(f"Generation {gen}: Best fitness = {fitness.min()}")
-
     env, pop = init_pcgym(cfg)
-    # our_plot_function(griewank_function)
-    # plt.plot(fitnesses)
-    # plt.yscale("log")
-    # plt.xlabel("Generation")
-    # plt.ylabel("Best Fitness")
-    # plt.show()
+    env._rep._map = pop[0]
+    Image.fromarray(env.render()).save("map.png")
 
 
 # %% Init population (maps)
@@ -85,8 +74,7 @@ def init_pcgym(cfg) -> Tuple[PcgrlEnv, np.ndarray]:
 # from qdax.core.map_elites import MAPElites
 # from PIL import Image
 # from qdax.core.emitters.mutation_operators import polynomial_mutation
-# env._rep._mep = pop[0]
-# Image.fromarray(env.render()).save("map.png")
+
 # fitness, behavior = map(np.array, zip(*list(map(lambda p: eval(env, p), pop))))
 # print(behavior.shape, fitness.shape)
 # # print(fitness)
