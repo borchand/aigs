@@ -78,12 +78,12 @@ You will now:
 
 We can optimize levels, just like we can optimize players. Thinking about what
 it means for a level to be "fit", you must now:
-1. Define a fitness function for a level in `pcgym` (A\* can play a role in
-2. In `pcgym` make a setup that finds _new_ levels. evaluating a level)
-3. Define two _behavioral_ dimensions, meaning ways in which levels can be
+0. Read and use the
+1. Define a fitness function for a level in `pcgym` (use `env._prob.get_stats`)
+2. Define two _behavioral_ dimensions, meaning ways in which levels can be
   different, that are _not_ fitness related (e.g., number of jumps).
-4. Generate an archive of good levels that are different from one another with
-  (Timothée's beloved) MAP-Elite algorithm. Fitness should be inverse distance
+3. Generate an archive of good levels that are different from one another with
+4. (Timothée's beloved) MAP-Elite algorithm. Fitness should be inverse distance
   from the goal, and the behaviors axis should be number of jumps.
 5. Add another behaviors axis of your choice.
 6. Bonus: mess with `pcgym` to make the game human playable
