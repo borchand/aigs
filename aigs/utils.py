@@ -2,6 +2,17 @@ import numpy as np
 from tqdm import tqdm
 
 
+# Problem specific functions:
+def sample_random():
+    return np.random.uniform(0, 1, (2,))
+
+
+def evaluate(x):
+    fitness = np.exp(-np.std(x))
+    behavior = [np.mean(x)]
+    return fitness, behavior
+
+
 # MAP-Elites auxiliary functions:
 def get_key(b, resolution):
     # suppose that b is in [0, 1]*
@@ -24,22 +35,20 @@ def variation_operator(Archive):
 
 
 # MAP-Elites hyperparameters
-# n_budget = 100  # total number of evaluations
-# n_init = int(0.1 * n_budget)  # number of random solutions to start filling the archive
-# resolution = 10  # number of cells per dimension
-
+n_budget = 100  # total number of evaluations
+n_init = int(0.1 * n_budget)  # number of random solutions to start filling the archive
+resolution = 10  # number of cells per dimension
 
 # MAP-Elites:
-def map_elite(cfg, sample_fn, evaluate_fn):
-    Archive = {}  # empty archive
-    for i in tqdm(range(cfg.n_budget)):
-        if i < int(0.1 * cfg.n_budget):  # initialize with random solutions
-            candidate = sample_fn()
-        else:  # mutation and/or crossover
-            candidate = variation_operator(Archive)
-        f, b = evaluate_fn(candidate)
-        key = get_key(b, cfg.resolution)  # get the index of the niche/cell
-        if key not in Archive or Archive[key]["fitness"] < f:  # add if new behavior or better fitness
-            Archive[key] = {"fitness": f, "behavior": b, "solution": candidate}
+Archive = {}  # empty archive
+for i in tqdm(range(n_budget)):
+    if i < n_init:  # initialize with random solutions
+        candidate = sample_random()
+    else:  # mutation and/or crossover
+        candidate = variation_operator(Archive)
+    f, b = evaluate(candidate)
+    key = get_key(b, resolution)  # get the index of the niche/cell
+    if key not in Archive or Archive[key]["fitness"] < f:  # add if new behavior or better fitness
+        Archive[key] = {"fitness": f, "behavior": b, "solution": candidate}
 
-    print(Archive)
+print(Archive)
