@@ -1,4 +1,4 @@
-task: "qd"
+task: "mcts"
 
 qd:
   n: 10
@@ -10,11 +10,12 @@ qd:
   population: 100
   rep: "turtle"
   game: "smb"
+  run: "pcgym"
 
 mcts:
   game: "connect_four"
   maxim: "human"
-  minim: "random"
+  minim: "monte_carlo"
   compute: 10
   c: 0.9
   blahbalh: "sss"

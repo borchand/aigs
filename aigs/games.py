@@ -46,7 +46,7 @@ class ConnectFour(Env):
         cols = [col for col in mask.T]
 
         row_diags = [mask.diagonal(i) for i in range(-6, 7)]
-        col_diags = [mask.T.diagonal(i) for i in range(-7, 6)]
+        col_diags = [np.fliplr(mask).diagonal(i) for i in range(-7, 6)]
 
         winner = False
         for v in rows + cols + row_diags + col_diags:
